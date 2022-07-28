@@ -7,21 +7,19 @@ const loader = document.getElementById('loader');
 
 let apiQuotes = [];
 
-// Show Loading
-const loading = () => {
+const showLoadingSpinner = () => {
   loader.hidden = false;
   quoteContainer.hidden =true;
 }
 
-// Hide Loading
-const complete = () => {
+const removeLoadingSpinner = () => {
   quoteContainer.hidden = false;
   loader.hidden = true;
 }
 
 // Show New Quote
 const newQuote = () => {
-  loading();
+  showLoadingSpinner();
   // Pick a random quote from apiQuotes array 
   const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
   // Check if Author field is black and replace it with 'Unknown'
@@ -36,20 +34,20 @@ const newQuote = () => {
   } else {
     // Set Quote, Hide Loader
     quoteText.textContent = quote.text;
-    complete();
+    removeLoadingSpinner();
   } 
 }
 
 // Get Quotes From API
 const getQuotes = async () => {
-  loading();
+  showLoadingSpinner();
   const apiUrl = 'https://type.fit/api/quotes';
   try {
     const response = await fetch(apiUrl);
     apiQuotes = await response.json();
     newQuote();
   } catch (error) {
-    
+      console.log('error', error);
   }
 }
 
