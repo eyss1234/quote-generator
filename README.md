@@ -1,6 +1,7 @@
 ## quote-generator
 
 Small coding exercise to create a simple page that display quotes using type.fit api
+Build using Fetch, Async/Await, Quote API, CORS
 
 ### Features
 
